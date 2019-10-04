@@ -164,20 +164,19 @@ def mine():
     last_block = blockchain.last_block
     last_proof = last_block.proof
 
-    # 現在のトランザクションを取得し，PoWを行う
-    current_transactions = copy.deepcopy(blockchain.current_transactions)
+    # PoWを行う
     proof = blockchain.proof_of_work(last_proof)
     timestamp = time()
     signature = sign(privatekey, timestamp)
     # マイニング用のトランザクションを追加
-    current_transactions.append(Transaction(
+    blockchain.new_transaction(
         sender = "mining",
         recipient = node_identifier,
         amount = 100,
         timestamp = timestamp,
         signature = signature,
-    ))
-    block = blockchain.new_block(proof, current_transactions)
+    )
+    block = blockchain.new_block(proof)
     response = {
         'message': 'new block mining!!',
         'index': block.index,

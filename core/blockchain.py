@@ -42,12 +42,11 @@ class Blockchain(object):
         self.nodes = {}
         self.new_block(
             previous_hash = 1,
-            transactions = self.current_transactions,
             proof=100
         )
 
 
-    def new_block(self, proof: int, transactions: List['Transaction'], previous_hash: str = None):
+    def new_block(self, proof: int, previous_hash: str = None):
         """
         新しいブロックを作成して追加する
         :param proof: int
@@ -56,7 +55,7 @@ class Blockchain(object):
         block = Block (
             len(self.chain) + 1,
             time(),
-            transactions,
+            self.current_transactions,
             proof,
             previous_hash or self.hash(self.chain[-1])
         )
