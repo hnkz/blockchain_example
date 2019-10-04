@@ -195,7 +195,7 @@ class Blockchain(object):
         guess = f'{last_proof}{proof}'.encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
         # return int(guess_hash[:10]) < 30000
-        return int(guess_hash[:4]) == 0
+        return int(guess_hash[:4], 16) == 0
     @property
     def last_block(self) -> 'Block':
         return self.chain[-1]
