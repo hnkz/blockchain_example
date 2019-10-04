@@ -97,7 +97,7 @@ class DNS():
     def ip_to_domain():
         raise Exception('not implemented')
 
-def communicate(query):
+def communicate(query, address):
     """
     クエリの送信と応答結果の受信
     :param query バイト配列
