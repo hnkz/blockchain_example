@@ -129,13 +129,9 @@ class Blockchain(object):
             print(f'{last_block}')
             print(f'{block}')
             print('\n----------------\n')
-            if block["previous_hash"] != self.hash(last_block):
-                print('bad block: invalid previous hash')
-                print(block["previous_hash"])
-                return False
-            if not self.valid_proof(last_block["proof"], block["proof"]):
-                print('bad block: invalid proof')
-                return False
+            # 以前のhashが一致するか
+            # PoWが成功するか
+            # 未実装
             last_block = block
             current_index += 1
         return True
@@ -180,7 +176,7 @@ class Blockchain(object):
         """
         guess = f'{last_proof}{proof}'.encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
-        return guess_hash[:4] < "0000"
+        return int(guess_hash[:4]) == 0
 
     @property
     def last_block(self) -> 'Block':

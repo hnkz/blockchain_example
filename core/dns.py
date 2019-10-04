@@ -71,15 +71,7 @@ class QuestionSection():
     
     def to_bytes(self):
         result = bytearray()
-        for domain in self.domains:
-            result.append(len(domain))
-            for b in bytes(domain.encode()):
-                result.append(b)
-        result.append(0) # 終端文字
-        result.append((self.dtype >> 8) & 0xff)
-        result.append(self.dtype & 0xff)
-        result.append((self.dclass >> 8) & 0xff)
-        result.append(self.dclass & 0xff)
+        # 未実装
         return bytes(result)
 
 class DNS():

@@ -126,6 +126,7 @@ def reflesh():
         if response.status_code == 200:
             # 知らないノードがあったら加える
             # 未実装
+            pass
         else:
             return "cannot get other nodes", 500
     response = {
